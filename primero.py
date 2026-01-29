@@ -1,3 +1,4 @@
+import os 
 import spade
 
 class DummyAgent(spade.agent.Agent):
@@ -5,7 +6,10 @@ class DummyAgent(spade.agent.Agent):
         print("Hello World! I'm agent {}".format(str(self.jid)))
 
 async def main():
-    dummy = DummyAgent("ea4@xmpp.jp", "xmppserver")
+    jid = os.getenv("AGENT_JID")
+    password = os.getenv("AGENT_PASSWORD")
+
+    dummy = DummyAgent(jid, password)
     await dummy.start()
 
 
